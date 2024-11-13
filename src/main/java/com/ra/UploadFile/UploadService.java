@@ -53,12 +53,12 @@ public class UploadService {
     //Upload file lên firebase
     public String uploadFileFromServerToFireBase(String filePath){
         Path localPath = Paths.get(filePath);
-        // Lấy ra tên ảnh
+        //Lấy ra tên ảnh
         String fileName = localPath.getFileName().toString();
-        // bucketName: Up lên bucket của firebase
+        //bucketName: Up lên bucket của firebase
         BlobId blobId = BlobId.of(bucketName, fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
-        // Thiết lập quyền truy cập công cộng
+        //Thiết lập quyền truy cập công cộng
         List<Acl> acls = new ArrayList<>();
         acls.add(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER));
         blobInfo = blobInfo.toBuilder().setAcl(acls).build();
